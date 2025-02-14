@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:ukk_2025/homepage.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  Supabase.initialize;
-  (
-    url: "https://chxhbocjccmahqlbkbme.supabase.co",
-    anonKey:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNoeGhib2NqY2NtYWhxbGJrYm1lIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgzNzM3MjEsImV4cCI6MjA1Mzk0OTcyMX0.niyAwqI-KHvxokQp5RYa6rzBhvvfypEBzv2Dafy2oTg"
-  );
+  Supabase.initialize(
+      url: "https://chxhbocjccmahqlbkbme.supabase.co",
+      anonKey:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNoeGhib2NqY2NtYWhxbGJrYm1lIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgzNzM3MjEsImV4cCI6MjA1Mzk0OTcyMX0.niyAwqI-KHvxokQp5RYa6rzBhvvfypEBzv2Dafy2oTg");
   runApp(MyApp());
 }
 
@@ -35,13 +34,19 @@ class _LoginPageState extends State<LoginPage> {
     String username = _usernameController.text;
     String password = _passwordController.text;
 
-    // Anda bisa menambahkan validasi dan logika login di sini
-    if (username == 'Bam12308' && password == '12345') {
-      // Login berhasil
+    // Simple validation for username and password
+    if (username == 'B' && password == '1') {
+      // Login successful
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('Login Berhasil')));
+
+      // Navigate to the HomePage after successful login
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => HomePage()),
+      );
     } else {
-      // Login gagal
+      // Login failed
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Username atau Password salah')));
     }
@@ -87,3 +92,6 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
+
+// Create a simple HomePage screen that the user is redirected to after login
+
